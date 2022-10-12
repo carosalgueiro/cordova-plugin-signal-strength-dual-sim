@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -168,8 +169,7 @@ public class SignalStrengthDualSim extends CordovaPlugin {
 
             
             
-            
-            List<CellSignalStrength> ListStuff = signalStrength.getCellSignalStrengths();
+            List<android.telephony.SignalStrength> ListStuff = signalStrength.getCellSignalStrengths();
             
             String stuffDBM = "";
             String stuffAsuLevel = "";
