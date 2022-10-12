@@ -26,8 +26,8 @@ import java.util.List;
 public class SignalStrengthDualSim extends CordovaPlugin {
 
     int dbm = -1;
-    int asu = 0;
-    int level = 0;
+    double asu = 0.0;
+    double level = 0.0;
     SignalStrengthStateListener ssListener;
     TelephonyManager defaultTelephonyManager;
 
