@@ -185,8 +185,8 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             
             for (android.telephony.CellSignalStrength entry: ListStuff) {
                 stuffDBM = stuffDBM + "/" + entry.getDbm();
-        //        stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
-        //        stuffLevel = stuffLevel + "/" + getLevel();
+                stuffAsuLevel = stuffAsuLevel + "/" + entry.getAsuLevel();
+                stuffLevel = stuffLevel + "/" + entry.getLevel();
             }
             
             
