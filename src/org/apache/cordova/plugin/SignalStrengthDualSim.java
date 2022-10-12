@@ -26,8 +26,8 @@ import java.util.List;
 
 public class SignalStrengthDualSim extends CordovaPlugin {
 
-    int dbm = -1;
-    int asu = 0;
+    int dBM = 0;
+	int asu = 0;
     int level = 0;
     SignalStrengthStateListener ssListener;
     TelephonyManager defaultTelephonyManager;
@@ -69,10 +69,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
         public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
 
             super.onSignalStrengthsChanged(signalStrength);
-            int tsNormSignalStrength = signalStrength.getGsmSignalStrength();
-            LOG.i(LOG_TAG, "Signalstrength, " + tsNormSignalStrength);
-            asu = tsNormSignalStrength;
-            level = signalStrength.getLevel();
 
 
             Context context = cordova.getActivity().getApplicationContext();
@@ -146,14 +142,11 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             
             List<android.telephony.CellSignalStrength> ListStuff = signalStrength.getCellSignalStrengths();
             
-            String stuffDBM = "";
-            String stuffAsuLevel = "";
-            String stuffLevel = "";
             
             for (android.telephony.CellSignalStrength entry: ListStuff) {
-                stuffDBM = stuffDBM + "/" + entry.getDbm();
-                stuffAsuLevel = stuffAsuLevel + "/" + entry.getAsuLevel();
-                stuffLevel = stuffLevel + "/" + entry.getLevel();
+                dBM = entry.getDbm();
+                asu = entry.getAsuLevel();
+                level = entry.getLevel();
             }
             
             
@@ -166,9 +159,7 @@ public class SignalStrengthDualSim extends CordovaPlugin {
                 response.put("NetworkTypeI", networkType);
                 response.put("asu", asu);
                 response.put("level", level);
-                response.put("stuffDBM", stuffDBM);
-                response.put("stuffAsuLevel", stuffAsuLevel);
-                response.put("stuffLevel", stuffLevel);
+                response.put("dBM", dBM);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
