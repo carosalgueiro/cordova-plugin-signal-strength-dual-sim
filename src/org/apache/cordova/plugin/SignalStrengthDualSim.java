@@ -44,9 +44,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         callback = callbackContext;
 
-        LOG.i(LOG_TAG, "STARTING");
-        LOG.i(LOG_TAG, "Params: " + action);
-
         if (SIM_ONE_ASU.equals(action) || SIM_TWO_ASU.equals(action)) {
 
             Context context = cordova.getActivity().getApplicationContext();
@@ -75,68 +72,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             TelephonyManager defaultTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             String operatorName = defaultTelephonyManager.getNetworkOperatorName();
             String operator = defaultTelephonyManager.getNetworkOperator();
-            int networkType = defaultTelephonyManager.getNetworkType();
-
-            String netWorkTypeName;
-            switch (networkType) {
-                case TelephonyManager.NETWORK_TYPE_GPRS:
-                    netWorkTypeName = "GPRS";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_GSM:
-                    netWorkTypeName = "GSM";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_EDGE:
-                    netWorkTypeName = "EDGE";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_CDMA:
-                    netWorkTypeName = "CDMA";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_1xRTT:
-                    netWorkTypeName = "1xRTT";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_IDEN:
-                    netWorkTypeName = "IDEN";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_UMTS:
-                    netWorkTypeName = "UMTS";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_EVDO_0:
-                    netWorkTypeName = "EVDO_0";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_EVDO_A:
-                    netWorkTypeName = "EVDO_A";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_HSDPA:
-                    netWorkTypeName = "HSDPA";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_HSUPA:
-                    netWorkTypeName = "HSUPA";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_HSPA:
-                    netWorkTypeName = "HSPA";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_EVDO_B:
-                    netWorkTypeName = "EVDO_B";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_EHRPD:
-                    netWorkTypeName = "EHRPD";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_HSPAP:
-                    netWorkTypeName = "HSPAP";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
-                    netWorkTypeName = "3G";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_LTE:
-                    netWorkTypeName = "LTE";
-                    break;
-                case TelephonyManager.NETWORK_TYPE_IWLAN:
-                    netWorkTypeName = "4G";
-                    break;
-                default:
-                    netWorkTypeName = "unknown";
-                    break;
-            }
 
             
             
@@ -155,8 +90,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             try {
                 response.put("operator_name", operatorName);
                 response.put("operator", operator);
-                response.put("networkType", netWorkTypeName);
-                response.put("NetworkTypeI", networkType);
                 response.put("asu", asu);
                 response.put("level", level);
                 response.put("dBM", dBM);
