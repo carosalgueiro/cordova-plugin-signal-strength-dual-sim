@@ -171,11 +171,14 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             
             var ListStuff = signalStrength.getCellSignalStrengths();
             
-            var stuff = ""
+            var stuffDBM = "";
+            var stuffAsuLevel = "";
+            var stuffLevel = "";
             
             ListStuff.forEach(function(entry) {
-                stuff = stuff + "/" + entry.getDbm();
-                
+                stuffDBM = stuffDBM + "/" + entry.getDbm();
+                stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
+                stuffLevel = stuffLevel + "/" + getLevel();
             });
             
             
@@ -190,7 +193,9 @@ public class SignalStrengthDualSim extends CordovaPlugin {
                 response.put("NetworkTypeI", networkType);
                 response.put("asu", asu);
                 response.put("level", level);
-                response.put("stuff", stuff);
+                response.put("stuffDBM", stuffDBM);
+                response.put("stuffAsuLevel", stuffAsuLevel);
+                response.put("stuffLevel", stuffLevel);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
