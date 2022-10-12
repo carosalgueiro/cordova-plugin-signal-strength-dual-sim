@@ -169,13 +169,13 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             
             
             
-            var ListStuff = signalStrength.getCellSignalStrengths();
+            //var ListStuff = signalStrength.getCellSignalStrengths();
             
-            var stuffDBM = "";
-            var stuffAsuLevel = "";
-            var stuffLevel = "";
+            String stuffDBM = "";
+            String stuffAsuLevel = "";
+            String stuffLevel = "";
             
-            ListStuff.forEach(function(entry) {
+            signalStrength.getCellSignalStrengths().forEach(function(entry) {
                 stuffDBM = stuffDBM + "/" + entry.getDbm();
                 stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
                 stuffLevel = stuffLevel + "/" + getLevel();
