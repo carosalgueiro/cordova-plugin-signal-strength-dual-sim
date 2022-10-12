@@ -166,6 +166,21 @@ public class SignalStrengthDualSim extends CordovaPlugin {
                     break;
             }
 
+            
+            
+            
+            var ListStuff = signalStrength.getCellSignalStrengths();
+            
+            var stuff = ""
+            
+            ListStuff.forEach(function(entry) {
+                stuff = stuff + "/" + entry.getDbm();
+                
+            });
+            
+            
+            
+            
             JSONObject response = new JSONObject();
 
             try {
@@ -175,6 +190,7 @@ public class SignalStrengthDualSim extends CordovaPlugin {
                 response.put("NetworkTypeI", networkType);
                 response.put("asu", asu);
                 response.put("level", level);
+                response.put("stuff", stuff);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
