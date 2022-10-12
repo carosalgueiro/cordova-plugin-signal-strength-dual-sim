@@ -174,12 +174,20 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             String stuffDBM = "";
             String stuffAsuLevel = "";
             String stuffLevel = "";
-            
+        /*    
             ListStuff.forEach(function(entry) {
                 stuffDBM = stuffDBM + "/" + entry.getDbm();
                 stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
                 stuffLevel = stuffLevel + "/" + getLevel();
-            });         
+            });   
+            
+           */ 
+            
+            for (android.telephony.CellSignalStrength entry: ListStuff) {
+                stuffDBM = stuffDBM + "/" + entry.getDbm();
+                stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
+                stuffLevel = stuffLevel + "/" + getLevel();
+            }
             
             
             JSONObject response = new JSONObject();
