@@ -54,23 +54,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             TelephonyManager defaultTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             defaultTelephonyManager.listen(ssListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
 
-
-//            int counter = 0;
-//            while (dbm == -1) {
-//                LOG.i(LOG_TAG, "while " + dbm);
-//                try {
-//                    Thread.sleep(200);
-//                } catch (InterruptedException e) {
-//
-//                    return false;
-//                }
-//                if (counter++ >= 5) {
-//                    break; // return -1
-//                }
-//            }
-
-//            callback.success();
-
             PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
             result.setKeepCallback(true);
             callback.sendPluginResult(result);
@@ -81,13 +64,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
     }
 
     class SignalStrengthStateListener extends PhoneStateListener  {
-
-//        CallbackContext callback;
-//        Context context;
-//        public void SignalStrengthStateListener(CallbackContext callbackContext, Context appContext){
-//            callback = callbackContext;
-//            context = appContext;
-//        }
 
         @Override
         public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
@@ -104,7 +80,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             String operatorName = defaultTelephonyManager.getNetworkOperatorName();
             String operator = defaultTelephonyManager.getNetworkOperator();
             int networkType = defaultTelephonyManager.getNetworkType();
-    //        int networkDataType = defaultTelephonyManager.getDataNetworkType();
 
             String netWorkTypeName;
             switch (networkType) {
@@ -174,14 +149,6 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             String stuffDBM = "";
             String stuffAsuLevel = "";
             String stuffLevel = "";
-        /*    
-            ListStuff.forEach(function(entry) {
-                stuffDBM = stuffDBM + "/" + entry.getDbm();
-                stuffAsuLevel = stuffAsuLevel + "/" + getAsuLevel();
-                stuffLevel = stuffLevel + "/" + getLevel();
-            });   
-            
-           */ 
             
             for (android.telephony.CellSignalStrength entry: ListStuff) {
                 stuffDBM = stuffDBM + "/" + entry.getDbm();
