@@ -108,26 +108,56 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             String netWorkTypeName;
             switch (networkType) {
                 case TelephonyManager.NETWORK_TYPE_GPRS:
+                    netWorkTypeName = "GPRS";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_GSM:
+                    netWorkTypeName = "GSM";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EDGE:
+                    netWorkTypeName = "EDGE";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_CDMA:
+                    netWorkTypeName = "CDMA";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_1xRTT:
+                    netWorkTypeName = "1xRTT";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_IDEN:
-                    netWorkTypeName = "2G";
+                    netWorkTypeName = "IDEN";
                     break;
                 case TelephonyManager.NETWORK_TYPE_UMTS:
+                    netWorkTypeName = "UMTS";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EVDO_0:
+                    netWorkTypeName = "EVDO_0";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EVDO_A:
+                    netWorkTypeName = "EVDO_A";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_HSDPA:
+                    netWorkTypeName = "HSDPA";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_HSUPA:
+                    netWorkTypeName = "HSUPA";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_HSPA:
+                    netWorkTypeName = "HSPA";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EVDO_B:
+                    netWorkTypeName = "EVDO_B";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EHRPD:
+                    netWorkTypeName = "EHRPD";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_HSPAP:
+                    netWorkTypeName = "HSPAP";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                     netWorkTypeName = "3G";
                     break;
                 case TelephonyManager.NETWORK_TYPE_LTE:
+                    netWorkTypeName = "LTE";
+                    break;
                 case TelephonyManager.NETWORK_TYPE_IWLAN:
                     netWorkTypeName = "4G";
                     break;
