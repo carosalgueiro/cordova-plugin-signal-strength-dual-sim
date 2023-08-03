@@ -38,6 +38,7 @@ public class SignalStrengthDualSim extends CordovaPlugin {
     private static final String SIM_COUNT = "SimCount";
     private static final String HAS_READ_PERMISSION = "hasReadPermission";
     private static final String REQUEST_READ_PERMISSION = "requestReadPermission";
+    public static final int INVALID = 2147483647;
     CallbackContext callback;
 
     @Override
@@ -73,16 +74,40 @@ public class SignalStrengthDualSim extends CordovaPlugin {
             String operatorName = defaultTelephonyManager.getNetworkOperatorName();
             String operator = defaultTelephonyManager.getNetworkOperator();
 
-            
-            
-            List<android.telephony.CellSignalStrength> ListStuff = signalStrength.getCellSignalStrengths();
-            
-            
-            for (android.telephony.CellSignalStrength entry: ListStuff) {
-                dBM = entry.getDbm();
-                asu = entry.getAsuLevel();
-                level = entry.getLevel();
+            // Added condition to also allow older versions than android 10 (CS 03/08/2023)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+                // For Android 10 (API level 29) and newer versions
+                List<android.telephony.CellSignalStrength> ListStuff = signalStrength.getCellSignalStrengths();
+                       
+                for (android.telephony.CellSignalStrength entry: ListStuff) {
+                    dBM = entry.getDbm();
+                    asu = entry.getAsuLevel();
+                    level = entry.getLevel();
+                }
             }
+            else{
+                // For Android 9 (API level 28) and older versions
+                int gsmASU = signalStrength.getGsmSignalStrength();
+                int cdmaDbm = signalStrength.getCdmaDbm();
+                
+                level = signalStrength.getLevel();
+
+                // GSM is the most commonly used. However, if unavailable, returns 99 and we check for CDMA
+                if(gsmASU != 99){
+                    dBM = (gsmASU * 2) - 113;
+                    asu = gsmASU;
+                }
+                else if(cdmaDbm != INVALID){
+                    dBM = cdmaDbm;
+                    asu = (dBM + 113) / 2;
+                }
+                else {
+                    dBM = 0;
+                    asu = 0;
+                }
+            }
+            
+            
             
             
             JSONObject response = new JSONObject();
